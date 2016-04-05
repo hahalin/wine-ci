@@ -1,0 +1,2 @@
+<?php exit; ?>
+{"ids":["category_id"],"table":{"crudTitle":"articles manager","crudRowsPerPage":"20"},"filter":{"list":["id","article_title","category_id","article_date","article_summary","article_content"]},"column":{"list":["id","article_title","category_id","article_date","article_summary","article_content"]},"frm_type":"2"}
