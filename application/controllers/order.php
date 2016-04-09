@@ -216,4 +216,44 @@ class order extends Admin_Controller {
 
         $this->load->view('layouts/admin/default', $var);
     }
+
+    function getOrderNo2($data) {
+    //print_r($data);
+
+    $CI = & get_instance();
+
+    $CI->db->select('max(orderno) maxno');
+    $CI->db->from('orders');
+
+    date_default_timezone_set('asia/taipei');
+    $now=date_create();
+    $today = $now->format('Ymd');
+    
+    $CI->db->like('orderno', $today,"after");
+    $query = $CI->db->get();
+    $rs = $query->row_array();
+
+    $newno=$today."001";
+    
+    if (!empty($rs)) {
+        if ($rs["maxno"] !="")
+        {
+            $no_part=substr($rs["maxno"],8,3);
+            $dt_part=substr($rs["maxno"],0,8);
+            $no_part=str_pad(intval($no_part)+1, 3, "0", STR_PAD_LEFT);
+            $newno= $dt_part.$no_part;
+        }
+    }
+    
+    $data['orders']['orderno'] = $newno;
+    //$data['orders']['dt'] = $now->format('Y-m-d h:i:a');
+    $data['orders']['dt'] = $now->format('Y-m-d');
+
+    print_r ($data);
+    
+    //die('test');
+
+    return $data;
+}
+
 }
