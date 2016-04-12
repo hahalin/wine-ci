@@ -689,19 +689,22 @@
                     break;
                 default:
                     if (__m.animates[opts.animate] != undefined){
-                        if ( $.browser.msie && parseInt($.browser.version) < 10) {
+                        //if ( $.browser.msie && parseInt($.browser.version) < 10) {
+                        if ( isie() && (!isie11())) {
                             o.remove();
                             $('#'+id+'_backdrop').remove();
                         }else{
+                            $(o).modal('hide');
                             setTimeout(function(){
-                                o.remove();
-                                $('#'+id+'_backdrop').remove();
+                                //o.remove();
+                                //$('#'+id+'_backdrop').remove();
                             },opts.timeOut); 
                         }
                         
                     }else{
                         o.remove();
                         $('#'+id+'_backdrop').remove();
+                        o.hide();
                     }
                     break;
             }
