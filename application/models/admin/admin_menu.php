@@ -55,4 +55,6 @@ class Admin_menu extends CI_Model {
         return $this->load->view('admin/menu/menu', $var, true);
     }
 
+    
+
 }
